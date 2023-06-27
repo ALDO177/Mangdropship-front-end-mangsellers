@@ -1,6 +1,7 @@
 
 :root {
   --mang-dodglerblue : #4e54c8;
+  --mang-light :#8f94fb
 }
 
 @import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@200&display=swap');
@@ -14,6 +15,21 @@
   color: var(--mang-dodglerblue);
 }
 
+.bg-mang-light{
+  background-color: var(--mang-light);
+}
+
+ .hp-pop{
+  font-size: 14px;
+  color: rgb(212, 212, 212);
+ }
+ 
+ .hop-pop:hover{
+   color: #4e54c8;
+   font-weight: bold;
+   cursor: pointer;
+ }
+
 .bg-mang-dodgerblue{
   background: #4e54c8;  /* fallback for old browsers */
   background: -webkit-linear-gradient(to right, #8f94fb, #4e54c8);  /* Chrome 10-25, Safari 5.1-6 */
@@ -22,6 +38,80 @@
 
 *{
   font-family: Roboto;
+}
+.header-main{
+  position: relative;
+  height: 60vh;
+  width: 100%;
+}
+
+.header-main.waveWrapper {
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  top: 0;
+  margin: auto;
+  overflow: hidden;
+}
+ .waveWrapperInner {
+  position: absolute;
+  width: 100%;
+  height: calc(100% - 3vh);
+  top: 0;
+  overflow: hidden;
+  background-image: linear-gradient(to right, #8f94fb, #4e54c8);
+}
+.waveWrapperInner.top {
+  opacity: 0.5;
+  z-index: 15;
+}
+.waveWrapperInner.mid {
+  opacity: 0.75;
+  z-index: 10;
+}
+.waveWrapperInner.bottom {
+  z-index: 5;
+}
+ .wave {
+  position: absolute;
+  left: 0;
+  width: 200%;
+  height: 100%;
+  background-repeat: repeat no-repeat;
+  background-position: 0 bottom;
+  transform-origin: center bottom;
+}
+
+ .waveTop {
+  background-size: 50% 100px;
+  background-image: url('../assets/images/wave-top.png');
+}
+.waveTop {
+  background-size: 50% 100px;
+  animation: wave 3s;
+  animation-delay: 1s;
+}
+@keyframes wave {
+  0% {
+      transform: translateX(0) translateZ(0) scaleY(1);
+  }
+  50% {
+      transform: translateX(-25%) translateZ(0) scaleY(0.50);
+  }
+  100% {
+      transform: translateX(-50%) translateZ(0) scaleY(1);
+  }
+}
+ .waveMid {
+  background-size: 50% 120px;
+  animation: wave 10s linear infinite;
+  background-image: url('../assets/images/wave-mid.png');
+}
+ .waveBottom {
+  background-size: 50% 100px;
+  animation: wave 15s linear infinite;
+  background-image: url('../assets/images/wave-bot.png');
 }
 
 input.form-control:active{

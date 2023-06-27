@@ -1,5 +1,4 @@
 'use client'
-
 import { MangdropshipProviderAuth } from "@/Providers/MangdropshipAuthProviders";
 import React, { ReactNode } from "react";
 
@@ -14,8 +13,6 @@ interface PropsForLayoutLogin{
 
 export default function LayoutLogin(props: PropsForLayoutLogin){
     return(
-      <MangdropshipProviderAuth>
-            {props?.children}
-      </MangdropshipProviderAuth>
+      <> {props?.children}</>
     )   
 }
