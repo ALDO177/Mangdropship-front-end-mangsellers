@@ -1,29 +1,20 @@
 import { motion } from 'framer-motion'
 import React from 'react';
-
-const options = {
-    show:{
-        opacity: 1,
-        scale: 1,
-    },
-    hidde:{
-        opcacity: 0,
-        scale: 0.5
-    }
-}
+import { optionsAnimateSlideShow } from './Options';
 
 type PropAnimateSlide = {
-    children?: React.ReactNode
+    children?: React.ReactNode,
+    duration?: number
 }
 
 export default function AnimationSlide(props: PropAnimateSlide){
     return(
         <motion.div 
-         transition={{duration: 0.4}} 
-         initial={'hidde'} 
-         animate={"show"} 
-         variants={options}>
-            {props.children}
+            transition={{duration: props?.duration ? props?.duration : 0.2}} 
+            initial={'hidde'} 
+            animate={"show"} 
+            variants={optionsAnimateSlideShow}>
+            { props.children }
         </motion.div>
     )
 }

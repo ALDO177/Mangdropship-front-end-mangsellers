@@ -8,7 +8,6 @@ import { redirect } from 'next/navigation';
 import MangdropshipLoading from "@/Loading/MangdropshipLoading";
 import {Container, Row, Col} from 'react-bootstrap';
 import HanldeLoadingAuthentication from "./loading";
-import AnimationSlide from "@/Animation/AnimationSlideShow";
 
 export default function LayoutAuth(props: PropsLayoutAuth) {
     const { status } = useSession();

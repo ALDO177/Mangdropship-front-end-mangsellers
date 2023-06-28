@@ -11,6 +11,11 @@
   src: url('../assets/font/Roboto-Light.ttf');
 }
 
+@font-face {
+  font-family: Montserrat;
+  src: url('../assets/font/Montserrat-VariableFont_wght.ttf');
+}
+
 .text-color-dodgerblue{
   color: var(--mang-dodglerblue);
 }
@@ -37,12 +42,30 @@
 }
 
 *{
-  font-family: Roboto;
+  font-family: Montserrat;
+  scroll-behavior: smooth;
 }
+
+.big-title{
+  font-size: 48px;
+  font-weight: 600;
+  color: white;
+}
+
 .header-main{
   position: relative;
   height: 60vh;
   width: 100%;
+}
+
+.if-content{
+  position: relative;
+}
+
+.if-content iframe{
+  border-radius: 5px;
+  width: 100%;
+  height: 250px;
 }
 
 .header-main.waveWrapper {
@@ -54,6 +77,7 @@
   margin: auto;
   overflow: hidden;
 }
+
  .waveWrapperInner {
   position: absolute;
   width: 100%;
@@ -87,11 +111,13 @@
   background-size: 50% 100px;
   background-image: url('../assets/images/wave-top.png');
 }
+
 .waveTop {
   background-size: 50% 100px;
   animation: wave 3s;
   animation-delay: 1s;
 }
+
 @keyframes wave {
   0% {
       transform: translateX(0) translateZ(0) scaleY(1);
@@ -103,11 +129,13 @@
       transform: translateX(-50%) translateZ(0) scaleY(1);
   }
 }
+
  .waveMid {
   background-size: 50% 120px;
   animation: wave 10s linear infinite;
   background-image: url('../assets/images/wave-mid.png');
 }
+
  .waveBottom {
   background-size: 50% 100px;
   animation: wave 15s linear infinite;
@@ -130,4 +158,46 @@ input.form-control:focus{
   font-weight: 500;
   line-height: 1.2;
   color: var(--bs-heading-color);
+}
+
+section#section-pages{
+  height: var(--h-pg, 100vh);
+  width: 100%;
+}
+
+.info-text{
+  text-align: center;
+  margin-top: 20px;
+  font-size: 22px;
+  padding: 10px;
+  font-weight: 300;
+  color: #3f3d59;
+  padding-left: 15%;
+  padding-right: 15%;
+}
+
+.our-title{
+  text-align: center;
+  font-size: 28px;
+  font-weight: 700;
+  color: #4d4b66;
+}
+.our-sub-title{
+  position: relative;
+  text-align: center;
+  font-size: 22px;
+  font-weight: 400;
+  color: #4d4b66;
+  height: 50px;
+}
+.our-sub-title::after{
+  position: absolute;
+  margin-bottom: 15px;
+  content: "";
+  width: 160px;
+  height: 3px;
+  background-color: #D9E3F2;
+  left: 50%;
+  margin-left: -78px;
+  bottom: -15px;
 }

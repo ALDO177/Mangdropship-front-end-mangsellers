@@ -6,7 +6,7 @@ import Image from "next/image";
 import { useSession } from "next-auth/react";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import * as IconsFa6 from 'react-icons/fa6';
-
+import { motion } from "framer-motion";
 export default function PanelAuthIcon() {
 
     const { status, data: session } = useSession();
@@ -58,14 +58,16 @@ export default function PanelAuthIcon() {
                                 </Popover>
                             </Popover>
                         }>
-                        <Image 
-                            src={imageUser ? imageUser : ManAuthLogo} 
-                            className="rounded-circle"
-                            style={{cursor: 'pointer'}} 
-                            alt="logo user auth" 
-                            loading="eager" 
-                            width={40} 
-                            height={40}/>
+                        <motion.div whileTap={{scale: 1.2}}>
+                            <Image 
+                                src={imageUser ? imageUser : ManAuthLogo} 
+                                className="rounded-circle"
+                                style={{cursor: 'pointer'}} 
+                                alt="logo user auth" 
+                                loading="eager" 
+                                width={40} 
+                                height={40}/>
+                        </motion.div>
                     </OverlayTrigger>
                 </div>
             }
