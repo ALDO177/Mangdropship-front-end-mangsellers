@@ -7,6 +7,7 @@ import { useSession } from "next-auth/react";
 import { OverlayTrigger, Popover } from "react-bootstrap";
 import * as IconsFa6 from 'react-icons/fa6';
 import { motion } from "framer-motion";
+
 export default function PanelAuthIcon() {
 
     const { status, data: session } = useSession();

@@ -9,9 +9,9 @@ export default function HeaderContent() {
     return (
         <React.Fragment>
             <Container style={{ paddingTop: '110px' }}>
-                <Row className="row-cols row-cols-lg-2">
-                    <Col md={6} lg={5} xxl={6}>
-                        <Col lg={10} xxl={10}>
+                <Row className="row-cols-2">
+                    <Col md={6} sm={12} lg={6} xxl={6}>
+                        <Col lg={10} xl={10} xxl={10}>
                             <AnimateSlideinShow duration={0.3} type={'bottom'} key={'cnt-pnl'}>
                                 <div className="big-title mb-2">
                                     Mangseller Bantu Jualan <span className="text-warning">Produkmu!</span>
@@ -38,7 +38,7 @@ export default function HeaderContent() {
                             </AnimateSlideinShow>
                         </Col>
                     </Col>
-                    <Col md={6} lg={5} xl={6} xxl={6}>
+                    <Col md={6} sm={12} lg={6} xl={6} xxl={6}>
                         <div className="if-content">
                            <AnimateSlideinShow duration={0.5} type={'top'} key={'cnt-vds'}>
                                 <motion.iframe

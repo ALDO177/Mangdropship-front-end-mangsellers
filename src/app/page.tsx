@@ -1,50 +1,50 @@
+'use client'
 
-'use client';
-import dynamic from 'next/dynamic';
 import React from 'react';
-import { Cookies } from 'react-cookie';
 import { motion, useInView } from 'framer-motion';
-import { ScroolAnimation } from '@/Animation/Options';
+import { ScroolAnimationOurAndvantage } from '@/Animation/Options';
+import { ComponentHeader, ComponentSection2 } from '@/component/Lazy/LoaderLazyComponent';
+import { ScroolAnimationLandingPage } from '@/component/Arrays/ComponentArrays';
+import { Metadata } from 'next';
 
-interface Props { cookies?: Cookies }
-type PropsPageAnimation = { element: React.ReactNode };
-
-const ComponentHeader   = dynamic(() => import('@/component/LandingPage/ComponentSection1'));
-const ComponentSection2 = dynamic(() => import('@/component/LandingPage/ComponentSection2'));
-
-const PagesAnimationSlide = (props: PropsPageAnimation) => {
-  return (
-    <motion.div
-      initial={"offscreen"}
-      whileInView={'onscreen'}
-      variants={ ScroolAnimation }
-      viewport={{ once: true, amount: 0.7 }}>
-      { props?.element }
-    </motion.div>
-  )
+export const metadata : Metadata = {
+  title: 'Mangseller Center',
+  description: 'Mangdropship Mangseller Company...',
+  applicationName: 'Mangdropship'
 }
+
+
+type PropsPageAnimation  = { element: React.ReactNode };
+type PropsPageHome = {
+  children?: React.ReactNode
+};
 
 const PagesViewScrool = (props: PropsPageAnimation) =>{
   const ref    = React.useRef(null);
-  const inView = useInView(ref, {once: true, amount: 0.7});
+  const inView = useInView(ref, {once: true, amount: 0.8});
 
   return(
-    <section ref={ref}>
-      
-    </section>
+    <motion.section ref={ref} 
+       className='section-pages' 
+       initial={'offscrren'}
+       animate={inView ? 'onscreen' : 'offscreen'} 
+       variants={ScroolAnimationOurAndvantage}>
+       {props?.element}
+    </motion.section>
   )
 }
 
-export default function Home(props: Props) {
+export default function Home(props: PropsPageHome) {
   return (
     <React.Fragment>
       <ComponentHeader/>
       <ComponentSection2/>
-       {/* {
-          RegisterPages.map((values, idx) =>(
-            <PagesAnimationSlide element={ values?.element } key={idx}/>
-          ))
-       } */}
+      {
+        ScroolAnimationLandingPage.map((values, idx) =>(
+           <PagesViewScrool element={values.element} key={idx}/>
+        ))
+      }
     </React.Fragment>
   )
 }
+

@@ -102,7 +102,7 @@ export const ScroolAnimationOurAndvantage : Variants ={
     },
     
     onscreen: {
-        x: 1,
+        x: 0,
         opacity: 1,
         scale: 1,
         transition: {
