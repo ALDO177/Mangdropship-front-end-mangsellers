@@ -18,3 +18,9 @@ export const ComponentSection3 = dynamic(() => import('@/component/LandingPage/C
         return <span>Loading Component Section 3</span>
     },
 });
+
+export const ComponentSection4 = dynamic(() => import('@/component/LandingPage/ComponentSection4'), {
+    loading(loadingProps) {
+        return <span>Loading...</span>
+    },
+});

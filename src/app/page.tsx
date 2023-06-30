@@ -13,7 +13,6 @@ export const metadata : Metadata = {
   applicationName: 'Mangdropship'
 }
 
-
 type PropsPageAnimation  = { element: React.ReactNode };
 type PropsPageHome = {
   children?: React.ReactNode

@@ -1,7 +1,7 @@
-import '@/assets/css/timeline.css'
 import Image from 'next/image';
 import { motion } from 'framer-motion'
 import React from 'react';
+import '@/assets/css/timeline.css'
 import { ScroolAnimationOurAndvantage } from '@/Animation/Options';
 
 type PropsPageAnimation = {
@@ -46,7 +46,7 @@ export default function OutAdventage() {
                 DataOurAdvantage.map((values, idx) => (
                     <div className={`container-tml ${idx % 2 === 0 ? "left" : "right"} `} key={idx}>
                         <ScroolAnimations>
-                            <div className="content">
+                            <div className="content w-100">
                                 <div className='d-flex gap-3 mb-3'>
                                     <Image
                                         className='align-self-center'
