@@ -14,7 +14,7 @@ export default function CompoenentSection3(props: PropsComponent) {
         <Container style={{paddingTop: '100px'}}>
             <div className='our'>
                 <h5 className='our-title'>Bagaimana Proses Terjualnya Produkmu?</h5>
-                <p className='our-sub-title text-black-50'></p>
+                <p className='our-sub-title text-black-50'>Penjualan Mudah dan Simple</p>
             </div>
             <ComponentSection4 />
         </Container>

@@ -3,7 +3,11 @@
 import React from 'react';
 import { motion, useInView } from 'framer-motion';
 import { ScroolAnimationOurAndvantage } from '@/Animation/Options';
-import { ComponentHeader, ComponentSection2 } from '@/component/Lazy/LoaderLazyComponent';
+import { 
+  ComponentFooter, 
+  ComponentHeader, 
+  ComponentSection2 
+} from '@/component/Lazy/LoaderLazyComponent';
 import { ScroolAnimationLandingPage } from '@/component/Arrays/ComponentArrays';
 import { Metadata } from 'next';
 
@@ -43,6 +47,7 @@ export default function Home(props: PropsPageHome) {
            <PagesViewScrool element={values.element} key={idx}/>
         ))
       }
+      <ComponentFooter/>
     </React.Fragment>
   )
 }

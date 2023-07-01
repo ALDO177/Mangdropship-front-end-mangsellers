@@ -5,7 +5,7 @@ import OutAdventage from './OurAdvantage';
 export default function ComponentSection2() {
     return (
         <section id='section-pages'>
-            <Container>
+            <Container style={{paddingTop: '100px'}}>
                 <div className='our'>
                     <h5 className='our-title'>Keunggulan Kami</h5>
                     <p className='our-sub-title text-black-50'>Nikmati semuanya setelah berhasil join di Mangseller</p>
@@ -18,8 +18,8 @@ export default function ComponentSection2() {
                   </Col>
                   <Col xxl={5} className='align-self-center'>
                         <div className="d-flex gap-3">
-                            <Button variant='info' size='lg' style={{width: '200px'}}>Buat Akun</Button>
-                            <Button variant='info' size='lg' style={{width: '200px'}}>Buat Akun</Button>
+                            <button className='btn btn-md bg-mang-light text-white' style={{width: '200px'}}>Buat Akun</button>
+                            <button className='btn btn-md btn-outline-mang' style={{width: '200px'}}>Hubungi Kami</button>
                         </div>
                   </Col>
                </Row>

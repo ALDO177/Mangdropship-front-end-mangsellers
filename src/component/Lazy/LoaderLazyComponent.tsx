@@ -24,3 +24,5 @@ export const ComponentSection4 = dynamic(() => import('@/component/LandingPage/C
         return <span>Loading...</span>
     },
 });
+
+export const ComponentFooter = dynamic(() => import('@/component/LandingPage/Footer'));

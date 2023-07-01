@@ -38,7 +38,7 @@ export default function ComponentSection4() {
                                         alt={values?.slugh}
                                         className="mx-auto d-block"
                                         width={30}
-                                        height={30}/>
+                                        height={30} />
                                 </div>
                                 <div className="step-name text-center" style={{ maxWidth: '100px' }}>{values?.slugh}</div>
                             </div>
@@ -47,15 +47,11 @@ export default function ComponentSection4() {
                 </div>
                 <AnimatePresence mode="wait">
                     <motion.div
-                    key={selectTab ? selectTab?.id : 'empty'}
-                    transition={{duration: 0.3}}
+                        key={selectTab ? selectTab?.id : 'empty'}
+                        transition={{ duration: 0.3 }}
                         initial={'hidde'}
                         animate={'show'}
-                        exit={{
-                            y: -50,
-                            scale: 0.2,
-                            opacity: 0,
-                        }}
+                        exit={{ y: -50, scale: 0.2, opacity: 0 }}
                         variants={tabsAnimation}>
                         <Row className="row-cols row-cols-lg-2 row-cols-xl-2 row-cols-xxl-2 mt-lg-4 mt-xl-5">
                             <Col lg={5} xxl={5} className="align-self-center">
@@ -64,13 +60,27 @@ export default function ComponentSection4() {
                                 </AnimationSlideInShow>
                             </Col>
                             <Col lg={7} xxl={6} className="align-self-center">
-                               <AnimationSlideInShow type="left" duration={0.8}>
-                                <Card className="shadow-lg w-100 border-0">
+                                <AnimationSlideInShow type="left" duration={0.8}>
+                                    <Card className="shadow-lg w-100 border-0">
                                         <Card.Body>
-                                            { selectTab?.text }
+                                            <Container>
+                                                <div className="d-flex">
+                                                    <Image
+                                                        key={selectTab?.id}
+                                                        className="align-self-center"
+                                                        src={selectTab?.path}
+                                                        width={50}
+                                                        height={50}
+                                                        alt="logo-1" />
+                                                    <h5 className="text-color-dodgerblue mb-4 align-self-center">
+                                                        Supplier Upload Produk di Mangseller
+                                                    </h5>
+                                                </div>
+                                                <div dangerouslySetInnerHTML={{ __html: selectTab?.text }}></div>
+                                            </Container>
                                         </Card.Body>
                                     </Card>
-                               </AnimationSlideInShow>
+                                </AnimationSlideInShow>
                             </Col>
                         </Row>
                     </motion.div>
