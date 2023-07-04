@@ -1,4 +1,4 @@
-import { authOptions } from "@/AuthLogin/GoogleLogin";
+import { authOptions } from "@/AuthLogin/OptionsAuthentication";
 import NextAuth from "next-auth"
 
 const handler = NextAuth(authOptions);

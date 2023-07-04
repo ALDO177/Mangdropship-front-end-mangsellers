@@ -11,6 +11,13 @@ export interface PropsForPageLogin{
     request?: NextRequest,
 }
 
+export interface PropsAlertComponent{
+    children?: ReactNode,
+    type: 'primary' | 'secondary' | 'success' | 'danger' | 'warning' | 'info' | 'light' | 'dark',
+    typeClose?: boolean,
+    callback?: any
+} 
+
 export interface PropsForPageRegister{
     
 }

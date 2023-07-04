@@ -1,4 +1,4 @@
-import { authOptions } from "@/AuthLogin/GoogleLogin";
+import { authOptions } from "@/AuthLogin/OptionsAuthentication";
 import { getServerSession } from "next-auth";
 import { NextResponse } from "next/server";
 

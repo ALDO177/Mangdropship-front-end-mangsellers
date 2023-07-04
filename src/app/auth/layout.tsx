@@ -1,4 +1,5 @@
-'use client'
+'use client';
+
 import AuthNavbar from "@/component/Navbar/AuthNavbar";
 import { PropsLayoutAuth } from "@/interface/AuthInterface";
 import { useSession } from "next-auth/react";
@@ -6,8 +7,10 @@ import React from "react";
 import { ThemeProvider } from "react-bootstrap";
 import { redirect } from 'next/navigation';
 import MangdropshipLoading from "@/Loading/MangdropshipLoading";
-import {Container, Row, Col} from 'react-bootstrap';
+import { Container, Row, Col } from 'react-bootstrap';
 import HanldeLoadingAuthentication from "./loading";
+import { Provider } from "react-redux";
+import { StoreForCategory, StoreForPokemon } from "@/redux/Store/StoreApis";
 
 export default function LayoutAuth(props: PropsLayoutAuth) {
     const { status } = useSession();
@@ -23,16 +26,18 @@ export default function LayoutAuth(props: PropsLayoutAuth) {
                 minBreakpoint="xxs">
                 <div className="content">
                     <AuthNavbar />
-                    <React.Suspense fallback={<HanldeLoadingAuthentication/>}>
+                    <React.Suspense fallback={<HanldeLoadingAuthentication />}>
                         <React.Fragment>
                             <Container>
-                                <Row className="justify-content-center">
-                                    <Col lg={7} xl={7} xxl={8} md={7} sm={7}>
-                                        <div className="d-flex align-items-center" style={{ height: '89vh' }}>
-                                            {props?.children}
+                                <div className="row justify-content-center">
+                                    <Col lg={8} xl={8} xxl={8} md={12} sm={12}>
+                                        <div className="d-flex align-items-center justify-content-center w-100" style={{ height: '89vh' }}>
+                                            <Provider store={StoreForCategory}>
+                                                {props?.children}
+                                            </Provider>
                                         </div>
                                     </Col>
-                                </Row>
+                                </div>
                             </Container>
                             <div
                                 className="footer w-100 bg-mang-dodgerblue text-center p-2 text-white"

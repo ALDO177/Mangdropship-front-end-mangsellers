@@ -4,7 +4,8 @@
 import Image from "next/image";
 import { Col, Container, Row } from "react-bootstrap"
 import * as FaIcons from 'react-icons/fa';
-import logoMang from '@/assets/images/logo-light.png';
+
+import logoMang from '../../../public/assets/logo-light.png';
 
 export default function Footer() {
     return (
