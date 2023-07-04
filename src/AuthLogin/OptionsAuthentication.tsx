@@ -12,6 +12,7 @@ export const authOptions: NextAuthOptions = {
 
   pages: {
     signIn: '/auth/login',
+    signOut: '/auth/signouth',
     error: '/auth/login'
   },
 
@@ -26,17 +27,40 @@ export const authOptions: NextAuthOptions = {
     }
   },
 
-  callbacks:{
-     async redirect(params) {
-       console.log(params)
-       return `${params.baseUrl}/auth/login`
-     },
-     async signIn({account, profile}) {
-      if(account?.provider === 'google'){
+  callbacks: {
+    async redirect(params) {
+      return `${params.baseUrl}/auth/login`
+    },
+    async signIn({ account, profile }) {
+      if (account?.provider === 'google') {
+        const getBackendActivedProviders = await fetch(`${config.API_URL}/mang-seller/provider`, {
+          method: 'POST',
+          headers:{
+            'X-API-MANG': config.X_API_MANG as string,
+          }
+        })
         return false;
       }
-       return true;
-     },
+      return true;
+    },
+
+    jwt: async ({ token, user } : {token: any, user: any}) => {
+      if(user){
+        token.email = user?.user.email;
+        token.name  = user?.user.name;
+        token.accessTokens = user?.accessToken
+      }
+      return token;
+    },
+
+    session: ({ session, token, user } : {session: any, token: any, user: any}) => {
+      if(user){
+         session.user.email  = user.user.email;
+         session.user.name   = user.user.name;
+         session.accessToken = user.accessToken;
+      }
+      return session;
+    }
   },
 
   providers: [
@@ -60,21 +84,17 @@ export const authOptions: NextAuthOptions = {
       },
 
       async authorize(credentials) {
-        console.log(credentials?.email, credentials?.password);
         const loginBackend = await fetch(`${config.API_URL}/mang-seller/auth/login`, {
-           method: 'POST',
-           headers: new Headers({
-            'Content-type' : 'application/json',
-            'X-API-MANG' : config.X_API_MANG as string,
-           }),
-           body: JSON.stringify(credentials)
+          method: 'POST',
+          headers: new Headers({
+            'Content-type': 'application/json',
+            'X-API-MANG': config.X_API_MANG as string,
+          }),
+          body: JSON.stringify(credentials)
         });
         const josnResponse = await loginBackend.json();
-         if(loginBackend.ok){
-            console.log(josnResponse);
-            return null;
-         }
-         console.log(josnResponse);
+        if (loginBackend.ok) return josnResponse;
+        console.log(josnResponse);
         return null;
       },
     }),

@@ -35,6 +35,7 @@ export default function PageLogin() {
 
     const handleSubmitLoginCredentials = async (event: any) => {
         event.preventDefault();
+        console.log(email.current, password.current);
         signIn('credentials', {
             email: email.current,
             password: password.current,

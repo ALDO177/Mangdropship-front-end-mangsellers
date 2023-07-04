@@ -11,6 +11,7 @@ import { motion } from "framer-motion";
 export default function PanelAuthIcon() {
 
     const { status, data: session } = useSession();
+    console.log(session)
     if (status === 'loading') return;
     if (status === 'unauthenticated') return <></>;
     const imageUser: string = session?.user?.image as string;

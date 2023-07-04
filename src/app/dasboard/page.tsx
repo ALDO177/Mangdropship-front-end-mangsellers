@@ -13,13 +13,14 @@ export default function pageDasboard(){
             theme: 'colored',
             autoClose: 3000
         });
-        redirect('/auth/login')
+        redirect('/')
     }});
 
     if(status === 'loading') return <MangdropshipLoading/>
     return(
         <React.Fragment>
-            <Button variant="danger" onClick={async() => signOut()}>Logout</Button>
+            <Button variant="danger" onClick={async() => signOut({
+            })}>Logout</Button>
             <h2>Mangseller Dasboard</h2>
         </React.Fragment>
     )
