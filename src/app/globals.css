@@ -20,6 +20,10 @@
   color: var(--mang-dodglerblue);
 }
 
+a{
+  text-decoration: none;
+}
+
 p{
   margin-left: unset;
 }
@@ -332,4 +336,7 @@ ul.ul li{
   list-style: none;
   padding-bottom: 12px;
   font-size: 14px;
+}
+.layout-topbar .layout-topbar-button{
+  color: white;
 }

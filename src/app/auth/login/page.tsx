@@ -13,17 +13,20 @@ import AnimationSlide from "@/Animation/AnimationSlideShow";
 import AlertAuthentication from "@/component/Alert/Auth/AlertAuthentication";
 import { useGetCategoryProdukQuery } from "@/Service/Api/Apis";
 import { ErrorAuthentication } from "@/Error/ErrorAuthentication";
+import { useForm, SubmitHandler } from 'react-hook-form';
+import { FormValidationlogin } from "@/interface/Validation";
+import { ValidationAnimation } from "@/component/Validation/AnimationMotion";
+import * as BsIcons from 'react-icons/bs';
+
 
 export default function PageLogin() {
 
+    const { register, handleSubmit, watch, formState: { errors }, setFocus } = useForm<FormValidationlogin>();
     const routeChanges = useRouter();
-    const email = React.useRef("");
-    const password = React.useRef("");
     const params = useSearchParams();
-    const [showAlert, setShowAlert] = React.useState(true);
-
+    const [__, setShowAlert] = React.useState(true);
     const { data, isLoading, error } = useGetCategoryProdukQuery('sub-category');
-    console.log(data)
+    const [showPass, setShowPass] = React.useState(false);
 
     if (error) {
         console.log(error)
@@ -33,14 +36,16 @@ export default function PageLogin() {
         routeChanges.push('/auth/register');
     }
 
-    const handleSubmitLoginCredentials = async (event: any) => {
-        event.preventDefault();
-        console.log(email.current, password.current);
+    React.useEffect(() =>{
+        setFocus('email');
+    }, [setFocus]);
+
+    const SubmitLoginCredentials: SubmitHandler<FormValidationlogin> = async (data) => {
         signIn('credentials', {
-            email: email.current,
-            password: password.current,
+            email:data.email,
+            password: data.password,
             redirect: true,
-            callbackUrl: '/auth/login'
+            callbackUrl: '/'
         });
     }
     const ErrorData = ErrorAuthentication.find((values) => {
@@ -64,34 +69,46 @@ export default function PageLogin() {
                             <Col lg={8} md={12} sm={12} xxl={8} xl={8}>
                                 <div className="row justify-content-center m-3">
                                     <Col xl={8} xxl={8} lg={8} md={12} sm={12}>
-                                        <h5 className="text-center fw-bold text-color-dodgerblue">Hallo Mangdropship Seller!</h5>
+                                        <h5 className="text-center text-color-dodgerblue">Hallo Mangdropship Seller!</h5>
                                         <h6 className="text-center">Masuk Dengan Akun Anda.</h6>
-                                        <form onSubmit={handleSubmitLoginCredentials}>
+                                        <form onSubmit={handleSubmit(SubmitLoginCredentials)}>
                                             <div className="content-form mt-4">
-                                                <InputGroup className="mb-4">
-                                                    <InputGroup.Text className="bg-mang-dodgerblue text-white">
+                                                <InputGroup className="">
+                                                    <InputGroup.Text id="vld-email" className="bg-mang-dodgerblue text-white">
                                                         <Icons.BsEnvelopeOpenFill size={18} />
                                                     </InputGroup.Text>
                                                     <Form.Control
-                                                        onChange={async (event) => email.current = event?.target.value}
+                                                        id="vld-email"
+                                                        {...register('email', { required: true, pattern: /^\S+@\S+\.\S+$/ })}
                                                         placeholder="Email"
-                                                        type="email"
+                                                        type="text"
                                                         style={{ height: '44px' }}>
                                                     </Form.Control>
                                                 </InputGroup>
+                                                <ValidationAnimation error={errors} type="email" validation="required">
+                                                    <small style={{ fontSize: '12px' }} className="text-danger">Email wajib diisi</small>
+                                                </ValidationAnimation>
+                                                <ValidationAnimation error={errors} type="email" validation="pattern">
+                                                    <small style={{ fontSize: '12px' }} className="text-danger">Email tidak Valid</small>
+                                                </ValidationAnimation>
                                             </div>
-                                            <div className="content-form mt-4">
+                                            <div className="content-form mt-3">
                                                 <InputGroup>
                                                     <InputGroup.Text className="bg-mang-dodgerblue text-white">
                                                         <IconsFs.FaLock size={18} />
                                                     </InputGroup.Text>
                                                     <Form.Control placeholder="Password"
-                                                        onChange={async (event) => password.current = event?.target.value}
-                                                        type="password" name="password"
+                                                        {...register('password', { required: true })}
+                                                        type={showPass ? 'text' : 'password'} name="password"
                                                         style={{ height: '44px' }}>
                                                     </Form.Control>
-                                                    <InputGroup.Text>@</InputGroup.Text>
+                                                    <InputGroup.Text style={{cursor: 'pointer'}} onClick={() =>  setShowPass(!showPass)}>
+                                                        {showPass ? <BsIcons.BsEye/> : <BsIcons.BsEyeSlash/>}
+                                                    </InputGroup.Text>
                                                 </InputGroup>
+                                                <ValidationAnimation error={errors} type="password" validation="required">
+                                                    <small style={{ fontSize: '12px' }} className="text-danger">Password wajib diisi</small>
+                                                </ValidationAnimation>
                                                 <div className="d-flex justify-content-between mt-3" style={{ fontSize: '13px' }}>
                                                     <Form.Check>
                                                         <Form.Check.Input type="checkbox" />
@@ -110,10 +127,7 @@ export default function PageLogin() {
                                         </form>
                                         <div className="btn-login mt-2">
                                             <Button
-                                                onClick={async () => signIn('google', {
-                                                    redirect: true,
-                                                    callbackUrl: `${process.env.NEXTAUTH_URL}/auth/login`
-                                                })}
+                                                onClick={async () => signIn('google')}
                                                 className="form-control"
                                                 variant="outline-danger">
                                                 <Icons.BsGoogle size={18} />
